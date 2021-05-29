@@ -1,0 +1,22 @@
+[Servers]
+[Servers.server]
+        # SERVER
+        CONSOLE = "DEBUG" # console log level
+        LOG = true # true / false
+
+[database]
+    connect = 'postgresql+psycopg2' #postgresql+psycopg2 / postgresql
+    user = ''
+    passwd = ''
+    host = ''
+    port = 5432
+    db = ''
+
+    [database.redis]
+        user = ''
+        passwd = ''
+
+[extension]
+    [extension.cloner]
+        configuration = "" # fclone config show name
+        sa_path = '' # end without  "/"
