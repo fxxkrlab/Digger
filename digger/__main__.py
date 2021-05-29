@@ -30,8 +30,7 @@ def main():
         item_string = Items(
             id=count_id,
             name=each["Name"],
-            path=each["Path"],
-
+            path=f'{g_drive_name}/{each["Path"]}',
             size=each["Size"],
             modtime=each["ModTime"],
             isdir=each["IsDir"],
