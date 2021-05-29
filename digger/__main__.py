@@ -2,7 +2,7 @@ import sys, json
 from modules import scanner
 from database.operate import operateDb
 from database.itemsql import Items
-
+from modules.drive import GoogleDrive
 
 def main():
     g_drive_id = sys.argv[1]
@@ -19,6 +19,7 @@ def main():
         g_drive_id=g_drive_id, checkers=checkers, transfers=transfers
     )
     raw_lsjson_result = json.loads(result)
+    g_drive_name = GoogleDrive.get_drive_name(GoogleDrive(),g_drive_id)
     count_id = 0
     many_request = []
 
@@ -34,6 +35,7 @@ def main():
             size=each["Size"],
             modtime=each["ModTime"],
             isdir=each["IsDir"],
+            g_drive_name = g_drive_name,
             g_drive_id=g_drive_id,
             g_endpoint_id=each["ID"],
         )
