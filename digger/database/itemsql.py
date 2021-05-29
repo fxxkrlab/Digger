@@ -43,7 +43,7 @@ class Items(BASE):
         self.g_drive_name = g_drive_name,
         self.g_drive_id = g_drive_id,
         self.g_folder_name = g_folder_name,
-        self.g_drive_id = g_drive_id,
+        self.g_folder_id = g_folder_id,
         self.g_endpoint_id = g_endpoint_id
 
 Items.__table__.create(checkfirst=True)

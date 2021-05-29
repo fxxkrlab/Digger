@@ -16,11 +16,17 @@ def main():
     )
     raw_lsjson_result = json.loads(scan_result)
     drive_name_result = GoogleDrive.get_file_path_from_id(GoogleDrive(),drive_id)
-    if len(drive_name_result) == 2:
-        g_drive_name = drive_name_result[1]['name']
-        g_drive_id = drive_name_result[1]['folder_id']
+    if len(drive_name_result) >= 2:
+        drive_num = len(drive_name_result) - 1
+        len_res = len(drive_name_result)
+        g_drive_name = drive_name_result[drive_num]['name']
+        g_drive_id = drive_name_result[drive_num]['folder_id']
         g_folder_name = drive_name_result[0]['name']
         g_folder_id = drive_id
+        front_path = ""
+        while len_res > 0:
+            front_path += f"{drive_name_result[(len_res - 1)]['name']}/"
+            len_res -= 1
 
         for each in raw_lsjson_result:
             count_id += 1
@@ -29,7 +35,7 @@ def main():
             item_string = Items(
                 id=count_id,
                 name=each["Name"],
-                path=f'{g_drive_name}/{g_folder_name}/{each["Path"]}',
+                path=f'{front_path}{each["Path"]}',
                 size=each["Size"],
                 modtime=each["ModTime"],
                 isdir=each["IsDir"],
@@ -65,7 +71,7 @@ def main():
             )
             
             many_request.append(item_string)
-            
+
     operateDb().addmany(many_request)
     count_id = 0
     many_request = []
