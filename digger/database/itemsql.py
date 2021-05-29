@@ -16,6 +16,8 @@ class Items(BASE):
     isdir = Column(String(250))
     g_drive_name = Column(String(250))
     g_drive_id = Column(String(250))
+    g_folder_name = Column(String(250))
+    g_folder_id = Column(String(250))
     g_endpoint_id = Column(String(250))
 
     def __init__(
@@ -28,6 +30,8 @@ class Items(BASE):
         isdir = None,
         g_drive_name = None,
         g_drive_id = None,
+        g_folder_name = None,
+        g_folder_id = None,
         g_endpoint_id = None,
     ):
         self.id = id,
@@ -37,6 +41,8 @@ class Items(BASE):
         self.modtime = modtime,
         self.isdir = isdir,
         self.g_drive_name = g_drive_name,
+        self.g_drive_id = g_drive_id,
+        self.g_folder_name = g_folder_name,
         self.g_drive_id = g_drive_id,
         self.g_endpoint_id = g_endpoint_id
 

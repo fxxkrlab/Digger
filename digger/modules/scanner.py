@@ -13,12 +13,13 @@ from multiprocessing import Manager
 text = b'''
 goodbye
 '''
-def lsjson(g_drive_id, checkers, transfers):
+def lsjson(drive_id, checkers, transfers):
     cloner = "fclone"
     option = "lsjson"
     stats = "-R"
+    filter = "--files-only"
     configuration = load._cfg["extension"]["cloner"]["configuration"]
-    src_block = configuration + ":" + "{" + g_drive_id + "}"
+    src_block = configuration + ":" + "{" + drive_id + "}"
     checkers = f"--checkers={str(checkers)}"
     transfers = f"--transfers={str(transfers)}"
     flags = "--check-first"
@@ -28,6 +29,7 @@ def lsjson(g_drive_id, checkers, transfers):
         cloner,
         option,
         stats,
+        filter,
         src_block,
         flags,
         checkers,
