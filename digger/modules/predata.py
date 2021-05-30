@@ -20,15 +20,11 @@ def pre_scanresult(len_res, drive_name_result, raw_lsjson_result, g_drive_name, 
         if each["Name"].endswith(video_suffix):
             type = "video"
             extension = os.path.splitext(each["Name"])[-1][1:]
-            #count_id += 1
-            print(f"v{count_id}")
             item_string = f"item{count_id}"
             item_string = made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_drive_id, g_folder_name, g_folder_id)
         elif each["Name"].endswith(sub_suffix):
             type = "subtitle"
             extension = os.path.splitext(each["Name"])[-1][1:]
-            #count_id += 1
-            print(f"s{count_id}")
             item_string = f"item{count_id}"
             item_string = made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_drive_id, g_folder_name, g_folder_id)
         else:
