@@ -1,4 +1,5 @@
 from database import SESSION
+from sqlalchemy.sql import func
 
 class operateDb:
     def __init__(self):
@@ -15,3 +16,6 @@ class operateDb:
     def update(self,object,filter,updic):
         self.session.query(object).filter(filter).update(updic)
         self.session.commit()
+
+    def get_id(self,object):
+        return self.session.query(func.max(object.id)).all()

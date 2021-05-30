@@ -10,6 +10,12 @@ def main():
     checkers = sys.argv[2]
     transfers = sys.argv[3]
 
+    count_now, = operateDb().get_id(Items)[0]
+    if count_now is not None:
+        count_id = count_now
+    else:
+        count_id = 0
+
     scan_result = scanner.lsjson(
         drive_id=drive_id, checkers=checkers, transfers=transfers
     )
@@ -25,7 +31,7 @@ def main():
         g_folder_name = drive_name_result[0]['name']
         g_folder_id = drive_id
 
-        many_request = predata.pre_scanresult(len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id, g_folder_name, g_folder_id)
+        many_request = predata.pre_scanresult(count_id, len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id, g_folder_name, g_folder_id)
 
     if len(drive_name_result) == 1:
         drive_num = len(drive_name_result) - 1
@@ -36,7 +42,7 @@ def main():
         g_folder_name = None
         g_folder_id = None
 
-        many_request = predata.pre_scanresult(len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id, g_folder_name, g_folder_id)
+        many_request = predata.pre_scanresult(count_id, len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id, g_folder_name, g_folder_id)
 
     operateDb().addmany(many_request)
 

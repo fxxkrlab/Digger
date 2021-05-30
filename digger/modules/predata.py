@@ -2,11 +2,10 @@ import os
 from datetime import datetime
 from database.itemsql import Items
 
-def pre_scanresult(len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id, g_folder_name, g_folder_id):
-    #global count_id
+def pre_scanresult(count_id, len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id, g_folder_name, g_folder_id):
     type = ""
     extension = ""
-    count_id = 0
+    count_id = count_id
     many_request = []
     video_suffix = ('mkv', 'ts', 'iso', 'm2ts', 'mp4', 'avi', 'rmvb', 'flv')
     sub_suffix = ('ass', 'vtt', 'ssa', 'srt')
