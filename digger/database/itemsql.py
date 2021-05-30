@@ -14,6 +14,8 @@ class Items(BASE):
     size = Column(String(250))
     modtime = Column(String(250))
     isdir = Column(String(250))
+    type = Column(String(250))
+    extension = Column(String(250))
     g_drive_name = Column(String(250))
     g_drive_id = Column(String(250))
     g_folder_name = Column(String(250))
@@ -28,6 +30,8 @@ class Items(BASE):
         size = None,
         modtime = None,
         isdir = None,
+        type = None,
+        extension = None,
         g_drive_name = None,
         g_drive_id = None,
         g_folder_name = None,
@@ -40,6 +44,8 @@ class Items(BASE):
         self.size = size,
         self.modtime = modtime,
         self.isdir = isdir,
+        self.type = type,
+        self.extension = extension
         self.g_drive_name = g_drive_name,
         self.g_drive_id = g_drive_id,
         self.g_folder_name = g_folder_name,
