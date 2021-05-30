@@ -41,7 +41,6 @@ def made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_d
     name=each["Name"],
     path=f'{front_path}{each["Path"]}',
     size=int(each["Size"]),
-    modtime=each["ModTime"],#datetime,#each["ModTime"],
     isdir=each["IsDir"],
     type = type,
     extension = extension,

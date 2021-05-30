@@ -13,7 +13,6 @@ class Items(BASE):
     name = Column(String(3000))
     path = Column(String(3000))
     size = Column(BigInteger)
-    modtime = Column(DateTime(250), default=datetime.datetime.utcnow)
     isdir = Column(String(250))
     type = Column(String(250))
     extension = Column(String(250))
@@ -29,7 +28,6 @@ class Items(BASE):
         name = None,
         path = None,
         size = None,
-        modtime = None,
         isdir = None,
         type = None,
         extension = None,
@@ -43,7 +41,6 @@ class Items(BASE):
         self.name = name,
         self.path = path,
         self.size = size,
-        self.modtime = modtime,
         self.isdir = isdir,
         self.type = type,
         self.extension = extension
