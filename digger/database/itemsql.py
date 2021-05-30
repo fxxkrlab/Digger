@@ -1,6 +1,7 @@
-import threading
+import datetime
+from typing import Any
 
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, VARCHAR, DateTime, BigInteger
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.sqltypes import Boolean
 
@@ -9,10 +10,10 @@ from database import SESSION, BASE
 class Items(BASE):
     __tablename__ = "items"
     id = Column(Integer, primary_key=True)
-    name = Column(String(250))
-    path = Column(String(250))
-    size = Column(String(250))
-    modtime = Column(String(250))
+    name = Column(String(3000))
+    path = Column(String(3000))
+    size = Column(BigInteger)
+    modtime = Column(DateTime(250), default=datetime.datetime.utcnow)
     isdir = Column(String(250))
     type = Column(String(250))
     extension = Column(String(250))

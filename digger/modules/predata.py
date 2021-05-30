@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from database.itemsql import Items
 
 def pre_scanresult(len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id, g_folder_name, g_folder_id):
@@ -40,8 +41,8 @@ def made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_d
     id=count_id,
     name=each["Name"],
     path=f'{front_path}{each["Path"]}',
-    size=each["Size"],
-    modtime=each["ModTime"],
+    size=int(each["Size"]),
+    modtime=each["ModTime"],#datetime,#each["ModTime"],
     isdir=each["IsDir"],
     type = type,
     extension = extension,
