@@ -1,6 +1,8 @@
-import os
+import os, re
 from datetime import datetime
 from database.itemsql import Items
+from database.foldersql import Folders
+from modules import load
 
 def pre_scanresult(count_id, len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id):
     type = ""
@@ -39,7 +41,7 @@ def made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_d
     eachData = Items(
     id=count_id,
     file_name=each["Name"],
-    path=f'{front_path}{each["Path"]}',
+    path=f'{front_path}{each["Path"]}'.replace(each["Name"],""),
     size=int(each["Size"]),
     isdir=each["IsDir"],
     type = type,
@@ -47,5 +49,30 @@ def made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_d
     g_drive_name = g_drive_name,
     g_drive_id=g_drive_id,
     g_endpoint_id=each["ID"],)
+
+    return eachData
+
+def pre_folderlist(count_id, path):
+    count_id = count_id
+    many_request = []
+    for e in path:
+        count_id += 1
+        folder_string = f"folder{count_id}"
+        match_tv_folder = re.search(load.tv_folders,e, flags=re.I)
+        if match_tv_folder is not None:
+            type = "tv"
+        else:
+            type = None
+        folder_string = made_eachFolder(count_id, type, e)
+
+        many_request.append(folder_string)
+
+    return many_request
+
+def made_eachFolder(count_id, type, e):
+    eachData = Folders(
+    id=count_id,
+    folder_name=e,
+    type=type,)
 
     return eachData

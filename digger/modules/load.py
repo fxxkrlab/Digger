@@ -18,3 +18,6 @@ else:
     )
 
 logger = logging.getLogger(__name__)
+
+path_regex_1 = r'([\s\S]+)\/([^\/][\s\S]+)\/$'
+tv_folders = r'^[\s\S]+[\.|\s]([se]\d{1,2}|[se]\d{1,2}\-*[se]\d{1,2}|complete|ep\d{1,2}\-ep\d{1,2}|ep\d{1,2})[\.|\s][\s\S]+$'

@@ -19,3 +19,6 @@ class operateDb:
 
     def get_id(self,object):
         return self.session.query(func.max(object.id)).all()
+
+    def group_by(self,object):
+        return self.session.query(object.path).group_by(object.path).all()
