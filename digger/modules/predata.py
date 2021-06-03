@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from database.itemsql import Items
 
-def pre_scanresult(count_id, len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id, g_folder_name, g_folder_id):
+def pre_scanresult(count_id, len_res, drive_name_result, raw_lsjson_result, g_drive_name, g_drive_id):
     type = ""
     extension = ""
     count_id = count_id
@@ -21,12 +21,12 @@ def pre_scanresult(count_id, len_res, drive_name_result, raw_lsjson_result, g_dr
             type = "video"
             extension = os.path.splitext(each["Name"])[-1][1:]
             item_string = f"item{count_id}"
-            item_string = made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_drive_id, g_folder_name, g_folder_id)
+            item_string = made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_drive_id)
         elif each["Name"].endswith(sub_suffix):
             type = "subtitle"
             extension = os.path.splitext(each["Name"])[-1][1:]
             item_string = f"item{count_id}"
-            item_string = made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_drive_id, g_folder_name, g_folder_id)
+            item_string = made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_drive_id)
         else:
             count_id -= 1
             continue
@@ -35,10 +35,10 @@ def pre_scanresult(count_id, len_res, drive_name_result, raw_lsjson_result, g_dr
     
     return many_request
 
-def made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_drive_id, g_folder_name, g_folder_id):
+def made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_drive_id):
     eachData = Items(
     id=count_id,
-    name=each["Name"],
+    file_name=each["Name"],
     path=f'{front_path}{each["Path"]}',
     size=int(each["Size"]),
     isdir=each["IsDir"],
@@ -46,8 +46,6 @@ def made_eachData(count_id, each, front_path, type, extension, g_drive_name, g_d
     extension = extension,
     g_drive_name = g_drive_name,
     g_drive_id=g_drive_id,
-    g_folder_name = g_folder_name,
-    g_folder_id = g_folder_id,
     g_endpoint_id=each["ID"],)
 
     return eachData

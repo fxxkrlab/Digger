@@ -10,7 +10,8 @@ from database import SESSION, BASE
 class Items(BASE):
     __tablename__ = "items"
     id = Column(Integer, primary_key=True)
-    name = Column(String(3000))
+    media_name = Column(String(3000))
+    file_name = Column(String(3000))
     path = Column(String(3000))
     size = Column(BigInteger)
     isdir = Column(String(250))
@@ -25,7 +26,8 @@ class Items(BASE):
     def __init__(
         self,
         id,
-        name = None,
+        media_name = None,
+        file_name = None,
         path = None,
         size = None,
         isdir = None,
@@ -38,7 +40,8 @@ class Items(BASE):
         g_endpoint_id = None,
     ):
         self.id = id,
-        self.name = name,
+        self.media_name = media_name,
+        self.file_name = file_name,
         self.path = path,
         self.size = size,
         self.isdir = isdir,
@@ -46,8 +49,8 @@ class Items(BASE):
         self.extension = extension
         self.g_drive_name = g_drive_name,
         self.g_drive_id = g_drive_id,
-        self.g_folder_name = g_folder_name,
-        self.g_folder_id = g_folder_id,
+        g_folder_name = g_folder_name,
+        g_folder_id = g_folder_id,
         self.g_endpoint_id = g_endpoint_id
 
 Items.__table__.create(checkfirst=True)
